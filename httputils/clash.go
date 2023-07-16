@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/xmdhs/clash2singbox/model/clash"
+	"github.com/etnperlong/clash2singbox/model/clash"
 	"gopkg.in/yaml.v3"
 )
 

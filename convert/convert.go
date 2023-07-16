@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/xmdhs/clash2singbox/model/clash"
-	"github.com/xmdhs/clash2singbox/model/singbox"
+	"github.com/etnperlong/clash2singbox/model/clash"
+	"github.com/etnperlong/clash2singbox/model/singbox"
 )
 
 var convertMap = map[string]func(*clash.Proxies, *singbox.SingBoxOut) ([]singbox.SingBoxOut, error){

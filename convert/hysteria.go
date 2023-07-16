@@ -3,8 +3,8 @@ package convert
 import (
 	"strconv"
 
-	"github.com/xmdhs/clash2singbox/model/clash"
-	"github.com/xmdhs/clash2singbox/model/singbox"
+	"github.com/etnperlong/clash2singbox/model/clash"
+	"github.com/etnperlong/clash2singbox/model/singbox"
 )
 
 func hysteria(p *clash.Proxies, s *singbox.SingBoxOut) error {

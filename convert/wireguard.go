@@ -3,8 +3,8 @@ package convert
 import (
 	"fmt"
 
-	"github.com/xmdhs/clash2singbox/model/clash"
-	"github.com/xmdhs/clash2singbox/model/singbox"
+	"github.com/etnperlong/clash2singbox/model/clash"
+	"github.com/etnperlong/clash2singbox/model/singbox"
 )
 
 func wireguard(p *clash.Proxies, s *singbox.SingBoxOut) ([]singbox.SingBoxOut, error) {

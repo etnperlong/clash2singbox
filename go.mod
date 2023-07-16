@@ -1,4 +1,4 @@
-module github.com/xmdhs/clash2singbox
+module github.com/etnperlong/clash2singbox
 
 go 1.20
 

@@ -9,9 +9,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/xmdhs/clash2singbox/convert"
-	"github.com/xmdhs/clash2singbox/httputils"
-	"github.com/xmdhs/clash2singbox/model/clash"
+	"github.com/etnperlong/clash2singbox/convert"
+	"github.com/etnperlong/clash2singbox/httputils"
+	"github.com/etnperlong/clash2singbox/model/clash"
 	"gopkg.in/yaml.v3"
 )
 
