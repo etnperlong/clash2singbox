@@ -1,39 +1,41 @@
 {
-    "log": {},
+    "log": {
+        "level": "error"
+    },
     "dns": {
         "servers": [
             {
-                "tag": "remote",
-                "address": "https://1.1.1.1/dns-query",
-                "detour": "select"
+                "tag": "国外DNS",
+                "address": "https://1.0.0.1/dns-query",
+                "detour": "节点"
             },
             {
-                "tag": "local",
-                "address": "https://223.5.5.5/dns-query",
-                "detour": "direct"
+                "tag": "国内DNS",
+                "address": "https://1.12.12.12/dns-query",
+                "detour": "直连"
             }
         ],
         "rules": [
             {
                 "clash_mode": "global",
-                "server": "remote"
+                "server": "国外DNS"
             },
             {
                 "clash_mode": "direct",
-                "server": "local"
+                "server": "国内DNS"
             },
             {
                 "outbound": [
                     "any"
                 ],
-                "server": "local"
+                "server": "国内DNS"
             },
             {
                 "geosite": "cn",
-                "server": "local"
+                "server": "国内DNS"
             }
         ],
-        "strategy": "ipv4_only"
+        "strategy": "prefer_ipv4"
     },
     "inbounds": [
         {
@@ -41,7 +43,7 @@
             "inet4_address": "172.19.0.1/30",
             "sniff": true,
             "sniff_override_destination": true,
-            "domain_strategy": "ipv4_only",
+            "domain_strategy": "prefer_ipv4",
             "strict_route": true,
             "mtu": 9000,
             "endpoint_independent_nat": true,
@@ -53,7 +55,7 @@
             "listen": "127.0.0.1",
             "sniff": true,
             "sniff_override_destination": true,
-            "domain_strategy": "ipv4_only",
+            "domain_strategy": "prefer_ipv4",
             "listen_port": 2333,
             "users": []
         },
@@ -62,7 +64,7 @@
             "tag": "mixed-in",
             "sniff": true,
             "sniff_override_destination": true,
-            "domain_strategy": "ipv4_only",
+            "domain_strategy": "prefer_ipv4",
             "listen": "127.0.0.1",
             "listen_port": 2334,
             "set_system_proxy": true,
@@ -71,50 +73,60 @@
     ],
     "outbounds": [
         {
+            "type": "selector",
+            "tag": "广告",
+            "default": "阻止",
+            "outbounds": [
+                "阻止",
+                "直连",
+                "节点"
+            ]
+        },
+        {
             "type": "direct",
-            "tag": "direct"
+            "tag": "直连"
         },
         {
             "type": "block",
-            "tag": "block"
+            "tag": "阻止"
         },
         {
             "type": "dns",
-            "tag": "dns-out"
+            "tag": "DNS查询"
         }
     ],
     "route": {
         "rules": [
             {
                 "geosite": "category-ads-all",
-                "outbound": "block"
+                "outbound": "广告"
             },
             {
                 "protocol": "dns",
-                "outbound": "dns-out"
+                "outbound": "DNS查询"
             },
             {
                 "clash_mode": "direct",
-                "outbound": "direct"
+                "outbound": "直连"
             },
             {
                 "clash_mode": "global",
-                "outbound": "select"
+                "outbound": "节点"
             },
             {
                 "geoip": [
                     "cn",
                     "private"
                 ],
-                "outbound": "direct"
+                "outbound": "直连"
             },
             {
                 "geosite": "geolocation-!cn",
-                "outbound": "select"
+                "outbound": "节点"
             },
             {
                 "geosite": "cn",
-                "outbound": "direct"
+                "outbound": "直连"
             }
         ],
         "auto_detect_interface": true

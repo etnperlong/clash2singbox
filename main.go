@@ -41,7 +41,7 @@ func main() {
 	c := clash.Clash{}
 	if url != "" {
 		var err error
-		c, err = httputils.GetClash(context.TODO(), &http.Client{Timeout: 10 * time.Second}, url)
+		c, err = httputils.GetClash(context.TODO(), &http.Client{Timeout: 10 * time.Second}, url, include, exclude)
 		if err != nil {
 			panic(err)
 		}

@@ -1,7 +1,6 @@
 package convert
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/xmdhs/clash2singbox/model/clash"
@@ -11,9 +10,6 @@ import (
 func hysteria(p *clash.Proxies, s *singbox.SingBoxOut) error {
 	p.Tls = true
 	tls(p, s)
-	if p.Ports != "" {
-		return fmt.Errorf("hysteria: %w", ErrNotSupportType)
-	}
 	if p.AuthStr != "" {
 		s.AuthStr = p.AuthStr
 	} else {
@@ -21,9 +17,6 @@ func hysteria(p *clash.Proxies, s *singbox.SingBoxOut) error {
 	}
 	s.Obfs = p.Obfs
 	s.TLS.Alpn = p.Alpn
-	if p.Protocol != "udp" {
-		return fmt.Errorf("hysteria: %w", ErrNotSupportType)
-	}
 	if up, err := strconv.Atoi(p.Up); err == nil {
 		s.UpMbps = up
 	} else {

@@ -79,26 +79,34 @@ func Patch(b []byte, s []singbox.SingBoxOut, include, exclude string, extOut []i
 
 	s = append([]singbox.SingBoxOut{{
 		Type:      "selector",
-		Tag:       "select",
-		Outbounds: append([]string{"urltest"}, tags...),
-		Default:   "urltest",
+		Tag:       "节点",
+		Outbounds: append([]string{"自动"}, tags...),
+		Default:   "自动",
 	}}, s...)
 
 	s = append(s, singbox.SingBoxOut{
+		Type:      "selector",
+		Tag:       "广告",
+		Outbounds: []string{"阻止", "直连", "节点"},
+		Default:   "阻止",
+	})
+
+	s = append(s, singbox.SingBoxOut{
 		Type: "direct",
-		Tag:  "direct",
+		Tag:  "直连",
 	})
 	s = append(s, singbox.SingBoxOut{
 		Type: "block",
-		Tag:  "block",
+		Tag:  "阻止",
 	})
 	s = append(s, singbox.SingBoxOut{
 		Type: "dns",
-		Tag:  "dns-out",
+		Tag:  "DNS查询",
 	})
+
 	s = append(s, singbox.SingBoxOut{
 		Type:      "urltest",
-		Tag:       "urltest",
+		Tag:       "自动",
 		Outbounds: ftags,
 	})
 
