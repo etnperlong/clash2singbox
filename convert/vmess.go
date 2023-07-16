@@ -86,7 +86,10 @@ func vless(p *clash.Proxies, s *singbox.SingBoxOut) error {
 		s.TLS.Reality = &singbox.SingReality{}
 		s.TLS.Reality.Enabled = true
 		s.TLS.Reality.PublicKey = p.RealityOpts.PublicKey
-		s.TLS.Reality.ShortID = p.RealityOpts.ShortId
+		// Patch Short ID
+		shortIdPadding := p.RealityOpts.ShortId + "0000000000000000"
+		s.TLS.Reality.ShortID = shortIdPadding[:16]
+
 	}
 	return nil
 }
